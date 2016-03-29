@@ -21,3 +21,4 @@ class FidelityCsvImporter(object):
             transaction.process_values(index_line, line)
             self.transactions.append(transaction)
         print("{0} records found!\n".format(count))
+        f.close()
