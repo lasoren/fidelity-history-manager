@@ -2,6 +2,7 @@ import time
 
 from datetime import datetime
 
+CATEGORIES_LOCATION = 'categories.txt'
 # Maps the index line from Fidelity CSVs to the index in the
 # values array in this class.
 # DO NOT MODIFY EXISTING VALUES.
@@ -22,6 +23,26 @@ INDEX_DICT = {
 }
 
 
+class Category(object):
+    index = 0
+    description = ""
+
+    def __init__(self, index, description):
+        self.index = index
+        self.description = description
+
+
+class CategoryImporter(object):
+    categories = ["Generic"]
+
+    def __init__(self):
+        f = open(CATEGORIES_LOCATION)
+        count = 0
+        for line in file:
+            self.categories.append(Category(count, line.strip()))
+            count += 1
+
+
 class Transaction(object):
     run_date = datetime.utcnow()
     account = ""
@@ -38,6 +59,8 @@ class Transaction(object):
     settlement_date = None
 
     values = []
+
+    category = 0
 
     def __init__(self):
         self.values = [
@@ -56,6 +79,14 @@ class Transaction(object):
             self.settlement_date
         ]
 
+    def __str__(self):
+        output = "Transaction of category: {0}\n".format(self.category)
+        append = []
+        for key, value in INDEX_DICT:
+            append.append("{0}: {1}\n".format(key, value))
+        output.join(append)
+        return output
+
     def process_values(self, index_line, raw_line):
         for i in xrange(len(raw_line)):
             type = INDEX_DICT[index_line[i]]
@@ -71,3 +102,6 @@ class Transaction(object):
     def __load_values(self, processed_line):
         for i in xrange(len(self.values)):
             self.values[i] = processed_line[i]
+
+    def set_category(self, category):
+        self.category = category
