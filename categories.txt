@@ -1,0 +1,11 @@
+Payroll
+Food
+Drinks
+Transportation
+Clothes
+Entertainment
+Technology
+Interest
+Dividend
+Buy Shares
+Sell Shares

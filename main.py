@@ -1,7 +1,8 @@
 from csv_importer import FidelityCsvImporter
+from categorizer import Categorizer
 
 fidelity_csv_importer = FidelityCsvImporter('2013Jan.csv')
+categorizer = Categorizer()
 
-for transaction in fidelity_csv_importer.transactions:
-    print(transaction)
+categorizer.categorize_transactions(fidelity_csv_importer.transactions)
 
