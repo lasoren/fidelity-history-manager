@@ -2,6 +2,11 @@ import time
 
 from datetime import datetime
 
+CATEGORIES = [
+    "Not classified",
+    "General"
+]
+
 # Maps the index line from Fidelity CSVs to the index in the
 # values array in this class.
 # DO NOT MODIFY EXISTING VALUES.
@@ -64,6 +69,22 @@ class Transaction(object):
         output = "TRANSACTION of CATEGORY: {0}\n".format(self.category)
         for key, value in self.sorted_dict:
             output += "{0}: {1}\n".format(key, self.values[value])
+        return output
+
+    def first_line_csv(self):
+        output = "{0},{1},".format("Category", "Category Description")
+        for key, value in self.sorted_dict:
+            output += "{0},".format(key)
+        # Drop the last comma.
+        output = output[:-1]
+        return output
+
+    def to_csv(self):
+        output = "{0},{1},".format(self.category, CATEGORIES[self.category])
+        for key, value in self.sorted_dict:
+            output += "{0},".format(self.values[value])
+        # Drop the last comma.
+        output = output[:-1]
         return output
 
     def process_values(self, index_line, raw_line):

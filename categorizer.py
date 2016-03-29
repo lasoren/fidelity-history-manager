@@ -1,28 +1,22 @@
 import re
 
-from transaction import INDEX_DICT
+from transaction import INDEX_DICT, CATEGORIES
 
 CATEGORIES_LOCATION = 'categories.txt'
 REGULAR_LOCATION = 'regular.txt'
 
-
 class CategoryImporter(object):
-    categories = [
-        "Not classified",
-        "General"
-    ]
-
     output_str = ""
 
     def __init__(self):
         f = open(CATEGORIES_LOCATION)
         count = 0
         for line in f:
-            self.categories.append(line.strip())
+            CATEGORIES.append(line.strip())
             count += 1
         # Setup output string.
-        for i in xrange(len(self.categories)):
-            self.output_str += "   ({0}) {1}   ".format(i, self.categories[i])
+        for i in xrange(len(CATEGORIES)):
+            self.output_str += "   ({0}) {1}   ".format(i, CATEGORIES[i])
         self.output_str += "\n"
 
     def __str__(self):
@@ -36,10 +30,11 @@ class Categorizer(object):
         f = open(REGULAR_LOCATION, "r")
         for line in f:
             tokens = line.strip().split(",")
-            if tokens[0] in self.regular_expressions:
-                self.regular_expressions[tokens[0]].append((tokens[1], tokens[2]))
-            else:
-                self.regular_expressions[tokens[0]] = [(tokens[1], tokens[2])]
+            if len(tokens) != 0:
+                if tokens[0] in self.regular_expressions:
+                    self.regular_expressions[tokens[0]].append((tokens[1], int(tokens[2])))
+                else:
+                    self.regular_expressions[tokens[0]] = [(tokens[1], int(tokens[2]))]
         f.close()
 
     def __del__(self):
@@ -47,12 +42,14 @@ class Categorizer(object):
         f = open(REGULAR_LOCATION, "w")
         for key, list in self.regular_expressions.iteritems():
             for value in list:
-                f.write("{0}, {1}, {2}\n".format(key, value[0], value[1]))
+                f.write("{0},{1},{2}\n".format(key, value[0], value[1]))
         f.close()
 
     def categorize_transactions(self, transactions):
         for transaction in transactions:
+            # Try to categorize automatically.
             self.__categorize_automatically(transaction)
+            # Otherwise, ask for user input.
             if transaction.category == 0:
                 print(transaction)
                 categorization = raw_input("What category does this transaction belong"
@@ -86,4 +83,5 @@ class Categorizer(object):
                 match = re.search(value[0], transaction.values[value_index])
                 if match != None:
                     transaction.set_category(value[1])
+                    print("Transaction classified: {0} -> {1}\n".format(transaction.values[value_index], value[1]))
                     break
