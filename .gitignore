@@ -60,3 +60,8 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Things from my Fidelity account that I do not want people to see.
+*.csv
+*.xls
+*.xlsx
