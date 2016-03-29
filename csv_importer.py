@@ -8,9 +8,9 @@ class FidelityCsvImporter(object):
         lines = []
         index_line = []
         count = 0
-        for line in file:
+        for line in f:
             items = line.strip().split(",")
-            if len(items) > 2:
+            if len(items) > 5:
                 if count > 0:
                     lines.append(items)
                 else:
@@ -20,4 +20,4 @@ class FidelityCsvImporter(object):
             transaction = Transaction()
             transaction.process_values(index_line, line)
             self.transactions.append(transaction)
-        print("{0} records found!\n", count)
+        print("{0} records found!\n".format(count))

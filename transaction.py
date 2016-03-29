@@ -38,7 +38,7 @@ class CategoryImporter(object):
     def __init__(self):
         f = open(CATEGORIES_LOCATION)
         count = 0
-        for line in file:
+        for line in f:
             self.categories.append(Category(count, line.strip()))
             count += 1
 
@@ -59,6 +59,7 @@ class Transaction(object):
     settlement_date = None
 
     values = []
+    sorted_dict = []
 
     category = 0
 
@@ -72,19 +73,18 @@ class Transaction(object):
             self.security_type,
             self.quantity,
             self.price_us,
-            self.commission,
+            self.commission_us,
             self.fees_us,
             self.accrued_interest,
             self.amount_us,
             self.settlement_date
         ]
+        self.sorted_dict = sorted(INDEX_DICT.iteritems(), key=lambda item: item[1])
 
     def __str__(self):
-        output = "Transaction of category: {0}\n".format(self.category)
-        append = []
-        for key, value in INDEX_DICT:
-            append.append("{0}: {1}\n".format(key, value))
-        output.join(append)
+        output = "TRANSACTION of CATEGORY: {0}\n".format(self.category)
+        for key, value in self.sorted_dict:
+            output += "{0}: {1}\n".format(key, self.values[value])
         return output
 
     def process_values(self, index_line, raw_line):
@@ -92,10 +92,17 @@ class Transaction(object):
             type = INDEX_DICT[index_line[i]]
             if type == 0 or type == 12:
                 # Convert the string to a datetime.
-                raw_line[i] = datetime.fromtimestamp(time.mktime(
-                    time.strptime(raw_line[i], "%Y-%m-%d")))
+                try:
+                    raw_line[i] = datetime.fromtimestamp(time.mktime(
+                        time.strptime(raw_line[i], "%m/%d/%Y")))
+                except ValueError:
+                    # TODO(luke): handle error with user input.
+                    pass
             elif type >= 6 and type <= 11:
-                raw_line[i] = float(raw_line[i])
+                try:
+                    raw_line[i] = float(raw_line[i])
+                except ValueError:
+                    raw_line[i] = 0
         # Load the values into the Transaction object.
         self.__load_values(raw_line)
 
