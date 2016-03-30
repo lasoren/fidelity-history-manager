@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee877572-9439-4126-b941-ae9796e13eed" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main_categorize.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categories.txt" afterPath="$PROJECT_DIR$/categories.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categorizer.py" afterPath="$PROJECT_DIR$/categorizer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/csv_importer.py" afterPath="$PROJECT_DIR$/csv_importer.py" />
     </list>
     <ignored path="fidelity-history-manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/categories.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="8" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="8" />
+              <caret line="13" column="7" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -87,8 +82,18 @@
       <file leaf-file-name="categorized.csv" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/categorized.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4007732">
-              <caret line="813" column="5" selection-start-line="813" selection-start-column="5" selection-end-line="813" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.78737116">
+              <caret line="1911" column="44" selection-start-line="1911" selection-start-column="44" selection-end-line="1911" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="regular.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/regular.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -116,8 +121,8 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/main_categorize.py" />
         <option value="$PROJECT_DIR$/categories.txt" />
-        <option value="$PROJECT_DIR$/regular.txt" />
         <option value="$PROJECT_DIR$/categorized.csv" />
+        <option value="$PROJECT_DIR$/regular.txt" />
       </list>
     </option>
   </component>
@@ -516,26 +521,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/regular.txt">
+    <entry file="file://$PROJECT_DIR$/categories.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31241655">
-          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="7" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/categories.txt">
+    <entry file="file://$PROJECT_DIR$/regular.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="8" />
+          <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/categorized.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4007732">
-          <caret line="813" column="5" selection-start-line="813" selection-start-column="5" selection-end-line="813" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.78737116">
+          <caret line="1911" column="44" selection-start-line="1911" selection-start-column="44" selection-end-line="1911" selection-end-column="44" />
           <folding />
         </state>
       </provider>
