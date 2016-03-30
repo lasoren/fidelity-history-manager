@@ -9,3 +9,5 @@ Interest
 Dividend
 Buy Shares
 Sell Shares
+Transfer
+Credit Card

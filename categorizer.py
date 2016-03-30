@@ -9,15 +9,15 @@ class CategoryImporter(object):
     output_str = ""
 
     def __init__(self):
-        f = open(CATEGORIES_LOCATION)
-        count = 0
-        for line in f:
-            CATEGORIES.append(line.strip())
-            count += 1
-        # Setup output string.
-        for i in xrange(len(CATEGORIES)):
-            self.output_str += "   ({0}) {1}   ".format(i, CATEGORIES[i])
-        self.output_str += "\n"
+        with open(CATEGORIES_LOCATION) as f:
+            count = 0
+            for line in f:
+                CATEGORIES.append(line.strip())
+                count += 1
+            # Setup output string.
+            for i in xrange(len(CATEGORIES)):
+                self.output_str += "   ({0}) {1}   ".format(i, CATEGORIES[i])
+            self.output_str += "\n"
 
     def __str__(self):
         return self.output_str
@@ -27,23 +27,23 @@ class Categorizer(object):
     regular_expressions = {}
 
     def __init__(self):
-        f = open(REGULAR_LOCATION, "r")
-        for line in f:
-            tokens = line.strip().split(",")
-            if len(tokens) != 0:
-                if tokens[0] in self.regular_expressions:
-                    self.regular_expressions[tokens[0]].append((tokens[1], int(tokens[2])))
-                else:
-                    self.regular_expressions[tokens[0]] = [(tokens[1], int(tokens[2]))]
-        f.close()
+        with open(REGULAR_LOCATION, "r") as f:
+            for line in f:
+                tokens = line.strip().split(",")
+                if len(tokens) != 0:
+                    if tokens[0] in self.regular_expressions:
+                        self.regular_expressions[tokens[0]].append((tokens[1], int(tokens[2])))
+                    else:
+                        self.regular_expressions[tokens[0]] = [(tokens[1], int(tokens[2]))]
+            f.close()
 
     def __del__(self):
         # Write the regular expressions back to the file.
-        f = open(REGULAR_LOCATION, "w")
-        for key, list in self.regular_expressions.iteritems():
-            for value in list:
-                f.write("{0},{1},{2}\n".format(key, value[0], value[1]))
-        f.close()
+        with open(REGULAR_LOCATION, "w") as f:
+            for key, list in self.regular_expressions.iteritems():
+                for value in list:
+                    f.write("{0},{1},{2}\n".format(key, value[0], value[1]))
+            f.close()
 
     def categorize_transactions(self, transactions):
         for transaction in transactions:
